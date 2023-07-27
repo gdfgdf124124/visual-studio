@@ -1,10 +1,21 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local window = Library.CreateLib("ABDM:R GUI", "Serpent")
+local colors = {
+    SchemeColor = Color3.fromRGB(153,50,204),
+    Background = Color3.fromRGB(32,32,32),
+    Header = Color3.fromRGB(48,48,48),
+    TextColor = Color3.fromRGB(255,255,255),
+    ElementColor = Color3.fromRGB(44,44,44)
+}
+local window = Library.CreateLib("ABDM:R GUI v1.6", colors)
 
 local Tab1 = window:NewTab("Main")
-local Tab1Section = Tab1:NewSection("Main")
+local Tab1Section = Tab1:NewSection("AutoFarm")
 local Tab25Section = Tab1:NewSection("Teleports")
-local Tab26Section = Tab1:NewSection("Remotes")
+local Tab26Section = Tab1:NewSection("NormalShop")
+local Tab27Section = Tab1:NewSection("TrowelShop")
+local Tab28Section = Tab1:NewSection("AwesomeMachine/SPIN")
+local Tab8 = window:NewTab("FUNNY")
+local Tab8Section = Tab8:NewSection("Sounds")
 local Tab2 = window:NewTab("CAKE EVENT")
 local Tab2Section = Tab2:NewSection("Cake Raid")
 local Tab3 = window:NewTab("LocalPlayer")
@@ -15,10 +26,10 @@ local Tab5 = window:NewTab("Credits")
 local Tab5Section = Tab5:NewSection("Credits for RobloxVBC")
 
 --Values
-local autofarmEnabled = false -- Variável para rastrear se o autofarm está habilitado
-local autokillEnabled = false -- Variável para rastrear se o autokill está habilitado
-local TeleportActive = false -- Toggle para ativar/desativar o teleport
-local MaxTeleportRange = 1000 -- Range máximo de teleport
+local autofarmEnabled = false 
+local autokillEnabled = false
+local TeleportActive = false
+local MaxTeleportRange = 1000
 
 --Functions
 local function banknoteAutofarm()
@@ -87,7 +98,7 @@ Tab1Section:NewToggle("Banknote Autofarm", "Banknote Farm", function(toggleState
     end
 end)
 
-Tab1Section:NewToggle("Autokill", "Kill entities around you", function(toggleState)
+Tab1Section:NewToggle("Autokill Entities", "Kill entities around you", function(toggleState)
     autokillEnabled = toggleState
     if autokillEnabled then
         autokill()
@@ -143,15 +154,55 @@ Tab26Section:NewButton("Purchase Rokakaka £0", "purchases items", function()
     game:GetService("ReplicatedStorage"):WaitForChild("Purchase"):FireServer(unpack(args))
 end)
 
-Tab26Section:NewButton("Purchase Trowel £3,500", "purchases items", function()
+Tab26Section:NewButton("Purchase Shiny Arrow £15,000", "purchases items", function()
+    local args ={
+        [1] = "NormalShop",
+        [2] = "ShinyArrow"
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Purchase"):FireServer(unpack(args))
+end)
+
+Tab27Section:NewButton("Purchase Trowel £3,500", "purchases items", function()
     local args ={
         [1] = "TrowelShop",
         [2] = "Trowel"
     }
     game:GetService("ReplicatedStorage"):WaitForChild("Purchase"):FireServer(unpack(args))
-    end)
+end)
 
-Tab26Section:NewButton("Purchase Cake £5,000,000", "purchases items", function()
+Tab27Section:NewButton("Purchase Cosmetic Cat Ticket £250", "purchases items", function()
+    local args ={
+        [1] = "TrowelShop",
+        [2] = "CatTicket"
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Purchase"):FireServer(unpack(args))
+end)
+
+Tab27Section:NewButton("Purchase PIPIS £50,000", "purchases items", function()
+    local args ={
+        [1] = "TrowelShop",
+        [2] = "PIPIS"
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Purchase"):FireServer(unpack(args))
+end)
+
+Tab27Section:NewButton("Purchase Renbyte's Arrow £2,500,000", "purchases items", function()
+    local args ={
+        [1] = "TrowelShop",
+        [2] = "RenArrow"
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Purchase"):FireServer(unpack(args))
+end)
+
+Tab27Section:NewButton("Purchase Leo's Diary £3,000,000", "purchases items", function()
+    local args ={
+        [1] = "TrowelShop",
+        [2] = "LEODiary"
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Purchase"):FireServer(unpack(args))
+end)
+
+Tab27Section:NewButton("Purchase Cake £5,000,000", "purchases items", function()
     local args ={
         [1] = "TrowelShop",
         [2] = "Cake"
@@ -159,18 +210,73 @@ Tab26Section:NewButton("Purchase Cake £5,000,000", "purchases items", function(
     game:GetService("ReplicatedStorage"):WaitForChild("Purchase"):FireServer(unpack(args))
 end)
 
-Tab26Section:NewButton("Purchase Normal Spin £100,000", "purchases items", function()
+Tab28Section:NewButton("Purchase Normal Spin £100,000", "purchases items", function()
     local args ={
         [1] = "Spin"
     }
     game:GetService("ReplicatedStorage"):WaitForChild("AwesomeMachine"):WaitForChild("Spin"):FireServer(unpack(args))
 end)
 
-Tab26Section:NewButton("Purchase Requiem Spin £12,500,000", "purchases items", function()
+Tab28Section:NewButton("Purchase Requiem Spin £12,500,000", "purchases items", function()
     local args ={
         [1] = "Requiem Spin"
     }
     game:GetService("ReplicatedStorage"):WaitForChild("AwesomeMachine"):WaitForChild("Spin"):FireServer(unpack(args))
+end)
+
+Tab8Section:NewButton("Vegeta Song", "reproduce a sound", function()
+    local args ={
+        [1] = game:GetService("Players").LocalPlayer.Character.Head,
+        [2] = "rbxassetid://13906818489",
+        [3] = 10,
+        [4] = 1,
+        [5] = 0
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Taunt"):FireServer(unpack(args))
+end)
+
+Tab8Section:NewButton("Obey WEEGEE", "reproduce a sound", function()
+    local args ={
+        [1] = game:GetService("Players").LocalPlayer.Character.Head,
+        [2] = "rbxassetid://181266147",
+        [3] = 10,
+        [4] = 10,
+        [5] = 0
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Taunt"):FireServer(unpack(args))
+end)
+
+Tab8Section:NewButton("Mama Mia", "reproduce a sound", function()
+    local args ={
+        [1] = game:GetService("Players").LocalPlayer.Character.Head,
+        [2] = "rbxassetid://1205895814",
+        [3] = 10,
+        [4] = 10,
+        [5] = 0
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Taunt"):FireServer(unpack(args))
+end)
+
+Tab8Section:NewButton("Very Dark Edgy Laugh", "reproduce a sound", function()
+    local args ={
+        [1] = game:GetService("Players").LocalPlayer.Character.Head,
+        [2] = "rbxassetid://4109723310",
+        [3] = 10,
+        [4] = 10,
+        [5] = 0
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Taunt"):FireServer(unpack(args))
+end)
+
+Tab8Section:NewButton("Divine Justice", "reproduce a sound", function()
+    local args ={
+        [1] = game:GetService("Players").LocalPlayer.Character.Head,
+        [2] = "rbxassetid://11982940588",
+        [3] = 10,
+        [4] = 10,
+        [5] = 0
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Taunt"):FireServer(unpack(args))
 end)
 
 Tab2Section:NewButton("Teleport to Safe Place", "teleports you", function()
